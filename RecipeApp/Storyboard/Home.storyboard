@@ -18,7 +18,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dlh-Xy-SFB">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="650-Gx-nO5">
                                     <size key="itemSize" width="414" height="265"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -26,7 +26,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NYx-g5-fFN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCVCell" id="NYx-g5-fFN" customClass="HomeCustomCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="265"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jAN-kw-N6t">
@@ -42,8 +42,8 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-uc-hvs">
                                                             <rect key="frame" x="306" y="207" width="100" height="50"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GHg-2B-xTb">
-                                                                    <rect key="frame" x="0.0" y="0.5" width="50" height="49"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stopwatch-filled" translatesAutoresizingMaskIntoConstraints="NO" id="GHg-2B-xTb">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMB-ej-xSM">
@@ -58,8 +58,8 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blueberry Pie" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-2m-Yvh">
-                                                            <rect key="frame" x="8" y="200" width="198" height="49"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                            <rect key="frame" x="8" y="200" width="115.5" height="49"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -73,7 +73,6 @@
                                                         <constraint firstItem="H1P-2m-Yvh" firstAttribute="top" secondItem="gWz-ZF-dLQ" secondAttribute="top" constant="200" id="RDP-4Y-cb0"/>
                                                         <constraint firstItem="H1P-2m-Yvh" firstAttribute="leading" secondItem="gWz-ZF-dLQ" secondAttribute="leading" constant="8" id="TW3-hy-FOZ"/>
                                                         <constraint firstItem="KCA-uc-hvs" firstAttribute="top" secondItem="gWz-ZF-dLQ" secondAttribute="top" constant="207" id="Vbo-un-Ewg"/>
-                                                        <constraint firstItem="KCA-uc-hvs" firstAttribute="leading" secondItem="H1P-2m-Yvh" secondAttribute="trailing" constant="100" id="XKY-Gb-1Rg"/>
                                                         <constraint firstItem="sY9-ZQ-ceq" firstAttribute="top" secondItem="gWz-ZF-dLQ" secondAttribute="top" id="eSs-P1-p5e"/>
                                                         <constraint firstAttribute="bottom" secondItem="KCA-uc-hvs" secondAttribute="bottom" constant="8" id="efx-fr-887"/>
                                                         <constraint firstItem="sY9-ZQ-ceq" firstAttribute="leading" secondItem="gWz-ZF-dLQ" secondAttribute="leading" id="iaw-97-j1I"/>
@@ -89,8 +88,19 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="265"/>
+                                        <connections>
+                                            <outlet property="Image" destination="sY9-ZQ-ceq" id="Jyb-gy-793"/>
+                                            <outlet property="timeImage" destination="GHg-2B-xTb" id="do3-Cf-grV"/>
+                                            <outlet property="timeLabel" destination="xMB-ej-xSM" id="peQ-Mf-5WD"/>
+                                            <outlet property="titleLabel" destination="H1P-2m-Yvh" id="mgS-Ze-2wK"/>
+                                            <outlet property="view" destination="gWz-ZF-dLQ" id="7FB-TC-238"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="6X6-H5-jJg" id="RXd-8p-adX"/>
+                                    <outlet property="delegate" destination="6X6-H5-jJg" id="nDB-81-BqO"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -103,6 +113,9 @@
                         <viewLayoutGuide key="safeArea" id="c9Y-Wl-gHm"/>
                     </view>
                     <navigationItem key="navigationItem" id="GVN-W1-e3J"/>
+                    <connections>
+                        <outlet property="homeCV" destination="Dlh-Xy-SFB" id="i89-Zj-rPE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmi-Er-iZq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,6 +143,6 @@
     </scenes>
     <resources>
         <image name="priscilla-du-preez-j4hxZuDnQts-unsplash" width="3384" height="5076"/>
-        <image name="timer" catalog="system" width="128" height="121"/>
+        <image name="stopwatch-filled" width="24" height="24"/>
     </resources>
 </document>

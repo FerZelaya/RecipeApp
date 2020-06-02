@@ -9,11 +9,11 @@
 import UIKit
 import SDWebImage
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     
+    @IBOutlet weak var homeCV: UICollectionView!
     
-    @IBOutlet weak var randomRecipeCollectionView: UICollectionView!
     
     private var randomRecipeArray = [RandomRecipe]()
     
@@ -32,16 +32,36 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        getRandomRecipe()
+       
         
     }
     
     
     
-    
+
     //MARK: - CollectionView DataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return randomRecipeArray.count
+    }
   
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = homeCV.dequeueReusableCell(withReuseIdentifier: "HomeCVCell", for: indexPath) as! HomeCustomCollectionViewCell
+        
+        cell.titleLabel.text = randomRecipeArray[indexPath.row].recipes[indexPath.row].title
+        cell.timeLabel.text = String(randomRecipeArray[indexPath.row].recipes[indexPath.row].readyInMinutes)
+        
+        let imgURL: URL? = URL(string: randomRecipeArray[indexPath.row].recipes[indexPath.row].image)
+        
+        if let url = imgURL {
+            cell.Image.sd_setImage(with: url)
+        }
+        
+        
+        
+        return cell
+    }
     
     
     
@@ -64,7 +84,7 @@ class HomeViewController: UIViewController {
             
             DispatchQueue.main.async {
                 
-                self?.randomRecipeCollectionView.reloadData()
+                self?.homeCV.reloadData()
             }
         }.resume()
         
@@ -80,9 +100,5 @@ class HomeViewController: UIViewController {
 
 //MARK: - Extensions
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 350, height: 290)
-    }
-}
+
 
